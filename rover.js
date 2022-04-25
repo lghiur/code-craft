@@ -31,6 +31,13 @@ const moveForward = ([x, y], orientation) => ({
   'W': [x - 1, y],
 }[orientation]);
 
+const moveBackward = ([x, y], orientation) => ({
+  'N': [x, y - 1],
+  'E': [x - 1, y],
+  'S': [x, y + 1],
+  'W': [x + 1, y],
+}[orientation]);
+
 const getEndPosition = ([x, y], orientation, command) => {
   if(!['F', 'B'].includes(command)) {
     return [x, y];
@@ -40,14 +47,7 @@ const getEndPosition = ([x, y], orientation, command) => {
     return moveForward([x, y], orientation);
   }
 
-  return {
-    'B': {
-      'N': [x, y - 1],
-      'E': [x - 1, y],
-      'S': [x, y + 1],
-      'W': [x + 1, y],
-    }
-  }[command][orientation];
+  return moveBackward([x, y], orientation);;
 };
 
 const move = (instructions, rover) => {
