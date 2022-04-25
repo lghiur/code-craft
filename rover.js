@@ -24,18 +24,23 @@ const getEndOrientation = (prevOrientation, command) => {
   return turnLeft(prevOrientation);
 };
 
+const moveForward = ([x, y], orientation) => ({
+  'N': [x, y + 1],
+  'E': [x + 1, y],
+  'S': [x, y - 1],
+  'W': [x - 1, y],
+}[orientation]);
+
 const getEndPosition = ([x, y], orientation, command) => {
   if(!['F', 'B'].includes(command)) {
     return [x, y];
   }
 
+  if(command === 'F') {
+    return moveForward([x, y], orientation);
+  }
+
   return {
-    'F': {
-      'N': [x, y + 1],
-      'E': [x + 1, y],
-      'S': [x, y - 1],
-      'W': [x - 1, y],
-    },
     'B': {
       'N': [x, y - 1],
       'E': [x - 1, y],
