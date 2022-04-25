@@ -1,22 +1,27 @@
+const turnRight = (orientation) => ({
+  'N': 'E',
+  'E': 'S',
+  'S': 'W',
+  'W': 'N'
+}[orientation]);
+
+const turnLeft = (orientation) => ({
+  'N': 'W',
+  'W': 'S',
+  'S': 'E',
+  'E': 'N'
+}[orientation]);
+
 const getEndOrientation = (prevOrientation, command) => {
   if(!['R', 'L'].includes(command)) {
     return prevOrientation;
   }
 
-  return {
-    'R': {
-      'N': 'E',
-      'E': 'S',
-      'S': 'W',
-      'W': 'N'
-    },
-    'L': {
-      'N': 'W',
-      'W': 'S',
-      'S': 'E',
-      'E': 'N'
-    }
-  }[command][prevOrientation];
+  if(command === 'R') {
+    return turnRight(prevOrientation);
+  }
+
+  return turnLeft(prevOrientation);
 };
 
 const getEndPosition = ([x, y], orientation, command) => {
