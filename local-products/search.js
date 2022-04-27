@@ -1,6 +1,6 @@
 const isProdInRange = (prodLocation, consumerLocation) => {
-  let distance = prodLocation - consumerLocation; 
-  return (distance >= 0 && distance < 50) || (distance <= 0 && distance > -50); 
+  let distance = Math.abs(prodLocation - consumerLocation); 
+  return (distance >= 0 && distance <= 50); 
 };
 
 const searchProducts = (productsCollection, filters) => {
