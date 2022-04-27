@@ -153,4 +153,42 @@ describe("when products list is checked", () => {
 
     expect(searchProducts(getProductCollection(inputProducts), filters)).toStrictEqual(resultProducts);
   });
+  
+  it("shows empty lists if no products are within 50km", () => {
+    let filters = {
+      productType: '',
+      consumerLocation: 350
+    };
+
+    let inputProducts = [
+      {
+        category: 'vegetables',
+        type: 'potato',
+        posted_date: '10.03.2022',
+        expiration: 2,
+        quantity: 50,
+        location: 200
+      },
+      {
+        category: 'vegetables',
+        type: 'potato',
+        posted_date: '10.03.2022',
+        expiration: 2,
+        quantity: 50,
+        location: 250
+      },
+      {
+        category: 'vegetables',
+        type: 'tomatos',
+        posted_date: '10.03.2022',
+        expiration: 2,
+        quantity: 50,
+        location: 299
+      }
+    ];
+
+    let resultProducts = [];
+
+    expect(searchProducts(getProductCollection(inputProducts), filters)).toStrictEqual(resultProducts);
+  });
 });
